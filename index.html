@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nabela Bites | Elite German Shepherds</title>
-    <meta name="description" content="Showcasing the world's finest German Shepherds. Loyalty, Power, and Grace at Nabela Bites.">
+    <title>Von Nabela | Elite German Shepherds</title>
+    <meta name="description" content="Showcasing the world's finest German Shepherds. Legacy in every bloodline at Von Nabela.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -13,7 +14,9 @@
 <body>
     <header id="header">
         <nav>
-            <div class="logo">NABELA<span>BITES</span></div>
+            <div class="logo">
+                <img src="assets/logo.png" alt="Von Nabela Logo">
+            </div>
             <ul>
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#showcase">Our Dogs</a></li>
@@ -21,6 +24,10 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="toggle-icon">🌙</span>
+                <span class="toggle-label">Light</span>
+            </button>
         </nav>
     </header>
 
@@ -35,7 +42,7 @@
                 </div>
             </div>
             <div class="hero-overlay"></div>
-            <img src="assets/hero.png" alt="Majestic German Shepherd" class="hero-bg">
+            <img src="assets/hero.jpeg" alt="Majestic German Shepherd" class="hero-bg">
         </section>
 
         <section id="showcase" class="showcase">
@@ -52,6 +59,60 @@
                         <div class="showcase-info">
                             <h3>Shadow of the Peak</h3>
                             <p>Proven agility and focus, Shadow represents the peak of our breeding standards.</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item reveal">
+                        <div class="img-wrapper">
+                            <img src="assets/puppy-1.jpeg" alt="Von Nabela Dog">
+                        </div>
+                        <div class="showcase-info">
+                            <h3>Name Placeholder</h3>
+                            <p>A loyal and powerful companion from the Von Nabela bloodline.</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item reveal">
+                        <div class="img-wrapper">
+                            <img src="assets/puppy-2.jpeg" alt="Von Nabela Dog">
+                        </div>
+                        <div class="showcase-info">
+                            <h3>Name Placeholder</h3>
+                            <p>Exceptional temperament and drive — bred for family and sport alike.</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item reveal">
+                        <div class="img-wrapper">
+                            <img src="assets/puppy-3.jpeg" alt="Von Nabela Dog">
+                        </div>
+                        <div class="showcase-info">
+                            <h3>Name Placeholder</h3>
+                            <p>Striking presence and noble bloodlines define this Von Nabela champion.</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item reveal">
+                        <div class="img-wrapper">
+                            <img src="assets/puppy-4.jpeg" alt="Von Nabela Dog">
+                        </div>
+                        <div class="showcase-info">
+                            <h3>Name Placeholder</h3>
+                            <p>Intelligence and beauty in perfect harmony — a true legacy in every step.</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item reveal">
+                        <div class="img-wrapper">
+                            <img src="assets/puppy-5.jpeg" alt="Von Nabela Dog">
+                        </div>
+                        <div class="showcase-info">
+                            <h3>Name Placeholder</h3>
+                            <p>Fearless and focused, this dog embodies the Von Nabela standard of excellence.</p>
+                        </div>
+                    </div>
+                    <div class="showcase-item reveal">
+                        <div class="img-wrapper">
+                            <img src="assets/puppy-6.jpeg" alt="Von Nabela Dog">
+                        </div>
+                        <div class="showcase-info">
+                            <h3>Name Placeholder</h3>
+                            <p>A natural athlete with an unwavering bond — the heart of Von Nabela.</p>
                         </div>
                     </div>
                 </div>
@@ -74,6 +135,27 @@
                     <div class="puppies-img reveal">
                         <img src="assets/puppies.png" alt="German Shepherd Puppy">
                         <div class="badge">Limited Spots</div>
+                    </div>
+                </div>
+
+                <div class="puppy-showcase reveal">
+                    <div class="section-title">
+                        <h2>Gallery & Moments</h2>
+                        <div class="line"></div>
+                    </div>
+                    <div class="puppy-grid">
+                        <div class="puppy-item"><img src="assets/puppy-1.jpeg" alt="Puppy 1"></div>
+                        <div class="puppy-item"><img src="assets/puppy-2.jpeg" alt="Puppy 2"></div>
+                        <div class="puppy-item"><img src="assets/puppy-3.jpeg" alt="Puppy 3"></div>
+                        <div class="puppy-item"><img src="assets/puppy-4.jpeg" alt="Puppy 4"></div>
+                        <div class="puppy-item"><img src="assets/puppy-5.jpeg" alt="Puppy 5"></div>
+                        <div class="puppy-item"><img src="assets/puppy-6.jpeg" alt="Puppy 6"></div>
+                    </div>
+                    <div class="video-container">
+                        <video controls poster="assets/puppy-1.jpeg">
+                            <source src="assets/puppy-video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
             </div>
@@ -128,8 +210,10 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-logo">NABELA<span>BITES</span></div>
-                <p>&copy; 2026 Nabela Bites Kennel. All Rights Reserved.</p>
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="Von Nabela Logo">
+                </div>
+                <p>&copy; 2026 Von Nabela Kennel. All Rights Reserved.</p>
             </div>
         </div>
     </footer>

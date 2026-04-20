@@ -1,14 +1,35 @@
 :root {
-    --primary: #d4af37; /* Gold */
-    --primary-dark: #b8860b;
-    --secondary: #1a1a1a; /* Charcoal */
+    --primary: #9d6b3a;
+    --primary-dark: #7a522c;
+    --secondary: #1a1a1a;
     --light: #f4f4f4;
     --dark: #0a0a0a;
+    --bg: #0a0a0a;
+    --surface: rgba(255, 255, 255, 0.05);
+    --surface-border: rgba(255, 255, 255, 0.08);
     --text: #ffffff;
-    --gray: #888888;
-    --accent: #ffae00;
-    --glass: rgba(255, 255, 255, 0.05);
+    --gray: #a0a0a0;
+    --accent: #c48c4d;
+    --hero-overlay: rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.4), transparent;
+    --header-bg: rgba(10, 10, 10, 0.98);
+    --header-gradient: rgba(10, 10, 10, 0.8);
+    --card-bg: rgba(255,255,255,0.05);
+    --logo-blend: screen;
     --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== LIGHT THEME ===== */
+[data-theme="light"] {
+    --bg: #f5f0ea;
+    --surface: rgba(0, 0, 0, 0.04);
+    --surface-border: rgba(0, 0, 0, 0.08);
+    --text: #1a1008;
+    --gray: #5a4a3a;
+    --hero-overlay: rgba(245, 240, 234, 0.7), rgba(245, 240, 234, 0.3), transparent;
+    --header-bg: rgba(245, 240, 234, 0.98);
+    --header-gradient: rgba(245, 240, 234, 0.85);
+    --card-bg: rgba(0,0,0,0.04);
+    --logo-blend: multiply;
 }
 
 * {
@@ -23,10 +44,11 @@ html {
 
 body {
     font-family: 'Outfit', sans-serif;
-    background-color: var(--dark);
+    background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .container {
@@ -41,15 +63,16 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-    padding: 30px 0;
+    padding: 15px 0;
     transition: var(--transition);
+    background: linear-gradient(to bottom, var(--header-gradient), transparent);
 }
 
 header.scrolled {
-    background: rgba(10, 10, 10, 0.85);
+    background: var(--header-bg);
     backdrop-filter: blur(20px);
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(157, 107, 58, 0.2);
 }
 
 nav {
@@ -62,15 +85,19 @@ nav {
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--text);
+    display: flex;
+    align-items: center;
 }
 
-.logo span {
-    color: var(--primary);
+.logo img {
+    height: 90px;
+    width: auto;
+    transition: var(--transition);
+    mix-blend-mode: var(--logo-blend);
+}
+
+header.scrolled .logo img {
+    height: 60px;
 }
 
 nav ul {
@@ -81,12 +108,13 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: var(--gray);
+    color: var(--text); /* Changed from gray to white for visibility */
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     transition: var(--transition);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Added shadow for visibility */
 }
 
 nav a:hover {
@@ -123,7 +151,8 @@ nav a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.4), transparent);
+    /* Always dark — hero sits over a photo regardless of theme */
+    background: linear-gradient(to right, rgba(5, 5, 5, 0.88), rgba(5, 5, 5, 0.45), transparent);
     z-index: -1;
 }
 
@@ -133,12 +162,14 @@ nav a:hover {
     padding: 0 40px;
 }
 
+/* Hero text always white — it sits over a dark photo overlay */
 .hero h1 {
     font-size: clamp(48px, 10vw, 96px);
     line-height: 0.9;
     font-weight: 800;
     margin-bottom: 20px;
     text-transform: uppercase;
+    color: #ffffff;
 }
 
 .hero h1 span {
@@ -149,7 +180,7 @@ nav a:hover {
 
 .hero p {
     font-size: 20px;
-    color: var(--gray);
+    color: rgba(255,255,255,0.75);
     max-width: 600px;
     margin-bottom: 40px;
 }
@@ -176,23 +207,38 @@ nav a:hover {
 
 .btn-primary {
     background-color: var(--primary);
-    color: var(--dark);
+    color: #ffffff;
 }
 
 .btn-primary:hover {
-    background-color: var(--text);
+    background-color: var(--primary-dark);
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 20px 40px rgba(157, 107, 58, 0.4);
 }
 
+/* Hero buttons always white-outlined (over dark overlay) */
+.hero .btn-secondary {
+    border: 2px solid rgba(255,255,255,0.8);
+    color: #ffffff;
+    background: transparent;
+}
+
+.hero .btn-secondary:hover {
+    background-color: rgba(255,255,255,0.15);
+    border-color: #ffffff;
+    transform: translateY(-5px);
+}
+
+/* Non-hero secondary button adapts to theme */
 .btn-secondary {
-    border: 2px solid var(--text);
-    color: var(--text);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
 }
 
 .btn-secondary:hover {
-    background-color: var(--text);
-    color: var(--dark);
+    background-color: var(--primary);
+    color: #ffffff;
     transform: translateY(-5px);
 }
 
@@ -226,8 +272,8 @@ section {
 }
 
 .showcase-item {
-    background: var(--glass);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
     border-radius: 20px;
     overflow: hidden;
     transition: var(--transition);
@@ -270,7 +316,7 @@ section {
 
 /* Puppies Section */
 .puppies {
-    background-color: #111;
+    background-color: var(--surface);
 }
 
 .puppies-content {
@@ -336,6 +382,52 @@ ul.features li::before {
     font-size: 12px;
 }
 
+/* Puppy Showcase Gallery */
+.puppy-showcase {
+    margin-top: 100px;
+}
+
+.puppy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.puppy-item {
+    border-radius: 15px;
+    overflow: hidden;
+    height: 250px;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    transition: var(--transition);
+}
+
+.puppy-item:hover {
+    transform: scale(1.05);
+    border-color: var(--primary);
+}
+
+.puppy-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    background: black;
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+}
+
 /* About Cards */
 .about-grid {
     display: grid;
@@ -345,15 +437,15 @@ ul.features li::before {
 
 .about-card {
     padding: 60px 40px;
-    background: var(--glass);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
     border-radius: 20px;
     text-align: center;
     transition: var(--transition);
 }
 
 .about-card:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
     transform: translateY(-10px);
 }
 
@@ -381,7 +473,7 @@ ul.features li::before {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    color: var(--dark);
+    color: #1a1008; /* Always dark text inside the bronze contact box */
 }
 
 .contact-info h2 {
@@ -393,7 +485,7 @@ ul.features li::before {
 
 .contact-info h2 span {
     display: block;
-    -webkit-text-stroke: 1px var(--dark);
+    -webkit-text-stroke: 1px #1a1008;
     -webkit-text-fill-color: transparent;
 }
 
@@ -408,16 +500,16 @@ ul.features li::before {
     gap: 20px;
 }
 
-.input-group input, 
+.input-group input,
 .input-group textarea {
     width: 100%;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.05);
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.06);
+    border: 2px solid rgba(0, 0, 0, 0.15);
     border-radius: 15px;
     font-family: inherit;
     font-size: 16px;
-    color: var(--dark);
+    color: #1a1008;
     transition: var(--transition);
 }
 
@@ -435,7 +527,7 @@ ul.features li::before {
 /* Footer */
 footer {
     padding: 100px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--surface-border);
 }
 
 .footer-grid {
@@ -444,18 +536,54 @@ footer {
     align-items: center;
 }
 
-.footer-logo {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--text);
-}
-
-.footer-logo span {
-    color: var(--primary);
+.footer-logo img {
+    height: 100px;
+    width: auto;
+    margin-bottom: 20px;
 }
 
 footer p {
     color: var(--gray);
+}
+
+/* Footer logo blend mode */
+.footer-logo img {
+    mix-blend-mode: var(--logo-blend);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: var(--surface);
+    border: 2px solid var(--primary);
+    color: var(--text);
+    padding: 8px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.theme-toggle:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.theme-toggle .toggle-icon {
+    font-size: 16px;
+    transition: transform 0.4s ease;
+}
+
+[data-theme="light"] .theme-toggle .toggle-icon {
+    transform: rotate(180deg);
 }
 
 /* Scroll Reveal Animations */
@@ -498,4 +626,43 @@ footer p {
     .contact-info h2 {
         font-size: 40px;
     }
+}
+
+/* ===== LIGHT THEME TARGETED OVERRIDES ===== */
+[data-theme="light"] nav a {
+    text-shadow: 0 2px 8px rgba(245, 240, 234, 0.6); /* Light shadow for light bg */
+}
+
+[data-theme="light"] header.scrolled nav a {
+    text-shadow: none;
+    color: var(--text);
+}
+
+[data-theme="light"] .puppies {
+    background-color: rgba(0,0,0,0.04);
+}
+
+[data-theme="light"] .hero-overlay {
+    background: linear-gradient(to right, rgba(5, 5, 5, 0.88), rgba(5, 5, 5, 0.45), transparent);
+}
+
+[data-theme="light"] .showcase-info p {
+    color: var(--gray);
+}
+
+[data-theme="light"] .about-card p {
+    color: var(--gray);
+}
+
+[data-theme="light"] .puppies-text p {
+    color: var(--gray);
+}
+
+[data-theme="light"] footer p {
+    color: var(--gray);
+}
+
+[data-theme="light"] .theme-toggle {
+    background: rgba(0,0,0,0.06);
+    color: var(--text);
 }

@@ -1,0 +1,16 @@
+{
+  "name": "von-nabela",
+  "version": "1.0.0",
+  "description": "Elite German Shepherds Kennel Website",
+  "main": "script.js",
+  "scripts": {
+    "dev": "browser-sync start --server --files \"*.html, style.css, script.js\"",
+    "start": "npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^3.0.0"
+  }
+}

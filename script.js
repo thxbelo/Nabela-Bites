@@ -1,3 +1,31 @@
+// ===== THEME TOGGLE =====
+const themeToggle = document.getElementById('theme-toggle');
+const toggleIcon = themeToggle.querySelector('.toggle-icon');
+const toggleLabel = themeToggle.querySelector('.toggle-label');
+
+// Load saved theme on page load
+const savedTheme = localStorage.getItem('vn-theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+updateToggleBtn(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('vn-theme', next);
+    updateToggleBtn(next);
+});
+
+function updateToggleBtn(theme) {
+    if (theme === 'light') {
+        toggleIcon.textContent = '☀️';
+        toggleLabel.textContent = 'Dark';
+    } else {
+        toggleIcon.textContent = '🌙';
+        toggleLabel.textContent = 'Light';
+    }
+}
+
 // Header scroll effect
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
